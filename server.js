@@ -7,12 +7,12 @@ const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const fs = require('fs');
 const path = require('path');
-const contactRoutes = require("./routes/contact");
-const dashboardRoutes = require("./routes/dashboard");
+const contactRoutes = require("./backend/routes/contact");
+const dashboardRoutes = require("./backend/routes/dashboard");
 
 // Import Authentication Middleware and Routes
-const authRoutes = require('./routes/auth');
-const authMiddleware = require('./middleware/authMiddleware'); // Updated path to separate middleware file
+const authRoutes = require('./backend/routes/auth');
+const authMiddleware = require('./backend/middleware/authMiddleware'); // Updated path to separate middleware file
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
@@ -35,11 +35,11 @@ const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, 'docs', 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Import and use other routes
-const registerRoutes = require('./routes/register');
+const registerRoutes = require('./backend/routes/register');
 app.use('/register', registerRoutes);
 console.log('Register route loaded');
 
-const courseRoutes = require('./routes/courses');
+const courseRoutes = require('./backend/routes/courses');
 app.use('/courses', authMiddleware, courseRoutes);
 
 // Default Route
