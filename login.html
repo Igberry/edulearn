@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - EduLearn</title>
+  <meta name="description" content="Wdd131 End of Course Project">
+  <meta name="author" content="David Chukwudi Igberi">
+  <link rel="icon" type="image/webp" href="images/hero1.webp">
+  <link rel="stylesheet" href="styles/project.css">
+</head>
+
+<body>
+
+  <!-- Reused Header from Home Page -->
+  <header>
+    <nav>
+      <div class="logo">EduLearn</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+  </header>
+  <!-- Login Form Section -->
+  <section class="login-section">
+    <div class="login-container">
+      <h2>Student Login</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+        <button type="submit" id="loginButton" class="login-btn">Login</button>
+
+        <p class="error-message" id="errorMessage"></p>
+      </form>
+
+      <!-- Sign-Up Section -->
+      <div class="signup-container">
+        <p>Don't have an account? <a href="register.html" class="signup-link">Create one here</a></p>
+        
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Reused Footer from Home Page -->
+  <footer>
+    <p>David Chukwudi Igberi - WDD131 Dynamic Web Fundamentals - Project</p>
+    <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+  </footer>
+
+  <script src="scripts/project.js"></script>
+</body>
+
+</html>
