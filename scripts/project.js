@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             try {
-                const response = await fetch("http://localhost:3000/auth/register", {
+                const response = await fetch("https://edulearn-6ime.onrender.com/auth/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ fullName, email, dob, sex, country, state, city, address, course, resumeDate, username, password })
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const password = document.getElementById("password").value.trim();
 
             try {
-                const response = await fetch("http://localhost:3000/auth/login", {
+                const response = await fetch("https://edulearn-6ime.onrender.com/auth/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password }),
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 try {
-                    const response = await fetch("http://localhost:3000/auth/logout", {
+                    const response = await fetch("https://edulearn-6ime.onrender.com/auth/logout", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.log("📩 Sending data:", { name, email, message });
 
-        fetch("http://localhost:3000/contact", {
+        fetch("https://edulearn-6ime.onrender.com/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, message }),
