@@ -25,6 +25,9 @@ app.use("/dashboard", dashboardRoutes);
 // Use Authentication Routes
 app.use('/auth', authRoutes.router);
 
+// Serve static files (e.g., CSS, JS, images) if any
+app.use(express.static(path.join(__dirname)));
+
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log('MongoDB Connected'))
@@ -56,6 +59,10 @@ app.get("/courses", async (req, res) => {
     }
 });
 
+// Root route for index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './index.html'));
+});
 
 // Start Server
 app.listen(PORT, () => {
