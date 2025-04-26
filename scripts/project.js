@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         body: JSON.stringify({ token }),
                     });
 
-                    console.log("Logout request sent:", response.status);
+                    console.log("Logout Request Sent:", response.status);
 
                     if (response.ok) {
                         localStorage.removeItem("token");
@@ -179,19 +179,19 @@ document.addEventListener("DOMContentLoaded", function () {
         "Blockchain Technology", "Project Management"]);
 });
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("✅ JavaScript is running!");
+    console.log("JavaScript is running!");
 
     const contactForm = document.getElementById("contactForm");
 
     if (!contactForm) {
-        console.error("❌ Contact form NOT found!");
+        console.error("Contact form NOT found!");
         return;
     }
 
-    console.log("✅ Contact form found!");
+    console.log("Contact form found!");
 
     contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();  // 🛑 Stop the page from refreshing
+        event.preventDefault();  // Stop the page from refreshing
 
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();

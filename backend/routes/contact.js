@@ -7,11 +7,11 @@ const router = express.Router();
 // Configure Nodemailer with Gmail SMTP
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: process.env.SMTP_PORT == 465, // Use SSL for port 465
+    port: Number(process.env.SMTP_PORT), // Ensure it's a number
+    secure: Number(process.env.SMTP_PORT) === 465, // Explicit comparison
     auth: {
-        user: process.env.SMTP_USER, // Admin email
-        pass: process.env.SMTP_PASS, // App password
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
     },
 });
 
