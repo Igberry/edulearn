@@ -73,15 +73,24 @@ router.post('/register', async (req, res) => {
 });
 
 
-// Login User
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
+        console.log("Login attempt:", username);
+
         const user = await User.findOne({ username });
-        if (!user) return res.status(400).json({ message: 'User not found' });
+        if (!user) {
+            console.log("User not found");
+            return res.status(400).json({ message: 'User not found' });
+        }
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+        if (!isMatch) {
+            console.log("Password mismatch");
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        console.log("Login successful");
 
         const accessToken = generateAccessToken(user);
         const refreshToken = generateRefreshToken(user);
@@ -90,10 +99,11 @@ router.post('/login', async (req, res) => {
             accessToken,
             refreshToken,
             fullName: user.fullName,
-            userId: user._id  // Sending userId for future use
+            userId: user._id
         });
 
     } catch (err) {
+        console.error("Login error:", err);
         res.status(500).json({ message: 'Login failed', error: err.message });
     }
 });
