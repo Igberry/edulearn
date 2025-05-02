@@ -16,7 +16,7 @@ router.get("/", authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Get student courses
+// Get student courses
 router.get("/courses", authMiddleware, async (req, res) => {
     try {
         // Dummy data (replace with actual database query)
@@ -31,7 +31,7 @@ router.get("/courses", authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Get student grades
+// Get student grades
 router.get("/grades", authMiddleware, async (req, res) => {
     try {
         const grades = [
@@ -45,7 +45,7 @@ router.get("/grades", authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Get schedule (Allow students to register for classes)
+// Get schedule (Allow students to register for classes)
 router.get("/schedule", authMiddleware, async (req, res) => {
     try {
         res.json({
@@ -58,7 +58,7 @@ router.get("/schedule", authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Get resources (Help materials for students)
+// Get resources (Help materials for students)
 router.get("/resources", authMiddleware, async (req, res) => {
     try {
         const resources = [
@@ -72,7 +72,7 @@ router.get("/resources", authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Get user settings (Dark mode, contact details)
+// Get user settings (Dark mode, contact details)
 router.get("/settings", authMiddleware, async (req, res) => {
     try {
         res.json({

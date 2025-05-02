@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user'); // Ensure the path to the User model is correct
 
-// ✅ GET all registered users
+// GET all registered users
 router.get('/', async (req, res) => {
     try {
         const users = await User.find();
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// ✅ POST - Register a new user
+// POST - Register a new user
 router.post('/', async (req, res) => {
     try {
         const { fullName, email, country, sex, course, username, password } = req.body;
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// ✅ PUT - Update a user's details by ID
+// PUT - Update a user's details by ID
 router.put('/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -40,7 +40,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// ✅ DELETE - Remove a user by ID
+// DELETE - Remove a user by ID
 router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;

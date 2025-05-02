@@ -29,7 +29,7 @@ app.use('/auth', authRoutes.router);
 app.use(express.static(path.join(__dirname)));
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('MongoDB Connected'))
     .catch(() => console.error('MongoDB Connection Failed'));
 

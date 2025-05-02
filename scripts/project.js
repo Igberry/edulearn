@@ -198,11 +198,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const message = document.getElementById("message").value.trim();
 
         if (!name || !email || !message) {
-            alert("⚠️ Please fill out all fields.");
+            alert("Please fill out all fields.");
             return;
         }
 
-        console.log("📩 Sending data:", { name, email, message });
+        console.log("Sending data:", { name, email, message });
 
         fetch("https://edulearn-6ime.onrender.com/contact", {
             method: "POST",
@@ -211,12 +211,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("✅ Server Response:", data);
+                console.log("Server Response:", data);
                 alert(data.message);
-                contactForm.reset(); // 🎯 Clear the form after success
+                contactForm.reset(); // Clear the form after success
             })
             .catch(error => {
-                console.error("❌ Error:", error);
+                console.error("Error:", error);
                 alert("An error occurred. Please try again.");
             });
     });
