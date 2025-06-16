@@ -31,7 +31,11 @@ app.use(express.static(path.join(__dirname)));
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log('MongoDB Connected'))
-    .catch(() => console.error('MongoDB Connection Failed'));
+    .catch((err) => {
+        console.error('MongoDB Connection Failed');
+        console.error(err);
+    });
+
 
 // Load Swagger JSON from the docs folder
 const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, 'docs', 'swagger.json'), 'utf8'));
