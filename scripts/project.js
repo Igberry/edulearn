@@ -404,3 +404,17 @@ document.addEventListener('DOMContentLoaded', function () {
         hamburger.classList.toggle('active');
     });
 });
+
+
+function togglePassword(fieldId, toggleBtn) {
+    const input = document.getElementById(fieldId);
+    const eyeIcon = toggleBtn.querySelector('.eye');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        eyeIcon.classList.add('slash');
+    } else {
+        input.type = 'password';
+        eyeIcon.classList.remove('slash');
+    }
+}

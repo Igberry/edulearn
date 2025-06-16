@@ -77,10 +77,20 @@
       <input type="text" id="username" name="username" placeholder="Choose a username" required>
 
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Create a password" required>
+      <div class="password-container">
+        <input type="password" id="password" name="password" placeholder="Create a password" required>
+        <div class="toggle-password" onclick="togglePassword('password', this)">
+          <span class="eye">👁</span>
+        </div>
+      </div>
 
       <label for="confirm-password">Confirm Password</label>
-      <input type="password" id="confirm-password" name="confirmPassword" placeholder="Re-enter password" required>
+      <div class="password-container">
+        <input type="password" id="confirm-password" name="confirmPassword" placeholder="Re-enter password" required>
+        <div class="toggle-password" onclick="togglePassword('confirm-password', this)">
+          <span class="eye">👁</span>
+        </div>
+      </div>
 
       <button type="submit">Register</button>
     </form>

@@ -1,3 +1,5 @@
+require('dotenv').config({ path: require('path').resolve(__dirname, '../../.env') });
+
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -61,7 +63,7 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create New User
-        const newUser = new User({ fullName, email, dob, sex, country, state, city, address, course, resumeDate, username, password: hashedPassword });
+        const newUser = new User({ fullName, email, dob, sex, country, state, city, address, course, resumeDate, username: username.toLowerCase(), password: hashedPassword });
         await newUser.save();
 
         res.status(201).json({ message: "User registered successfully" });
@@ -78,13 +80,15 @@ router.post('/login', async (req, res) => {
         const { username, password } = req.body;
         console.log("Login attempt:", username);
 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username: username.toLowerCase() });
+        console.log('User found:', user);
         if (!user) {
             console.log("User not found");
             return res.status(400).json({ message: 'User not found' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log('Password match:', isMatch);
         if (!isMatch) {
             console.log("Password mismatch");
             return res.status(400).json({ message: 'Invalid credentials' });

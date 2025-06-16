@@ -41,8 +41,12 @@
         <input type="text" id="username" name="username" placeholder="Enter your Username" required>
 
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-
+        <div class="password-container">
+          <input type="password" id="password" name="password" placeholder="Create a password" required>
+          <div class="toggle-password" onclick="togglePassword('password', this)">
+            <span class="eye">👁</span>
+          </div>
+        </div>
         <button type="submit" id="loginButton" class="login-btn">Login</button>
 
         <p class="error-message" id="errorMessage"></p>

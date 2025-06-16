@@ -254,7 +254,7 @@ nav {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    width: 400px;
     margin-top: 50px;
 }
 
@@ -294,8 +294,8 @@ nav {
     text-align: center;
     width: 100%;
     padding: 0.75rem;
-    background-color: #3498db;
-    color: black;
+    background-color: green;
+    color: white;
     font-size: 1.1rem;
     border-radius: 5px;
     text-decoration: none;
@@ -310,6 +310,26 @@ nav {
     color: white;
 }
 
+.signup-container {
+    margin-top: 20px;
+}
+
+.signup-container a {
+    text-decoration: none;
+}
+
+.signup-link {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.signup-link:hover {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
 
 footer {
     padding: 1rem;
@@ -375,6 +395,51 @@ footer {
 .registration-form button:hover {
     background-color: green;
     color: white;
+}
+
+/* Show/Hide Password */
+
+.password-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eye {
+    font-size: 20px;
+    position: relative;
+    color: black;
+}
+
+.eye.slash::after {
+    content: 'X';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 20px;
+    transform: rotate(45deg);
+    color: black;
+    pointer-events: none;
 }
 
 /* About Us Section */
