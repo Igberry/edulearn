@@ -178,59 +178,52 @@ document.addEventListener("DOMContentLoaded", function () {
         "Graphic Design", "Digital Marketing", "Cybersecurity", "Artificial Intelligence",
         "Blockchain Technology", "Project Management"]);
 });
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("JavaScript is running!");
-
+document.addEventListener("DOMContentLoaded", () => {
     const contactForm = document.getElementById("contactForm");
-    const responseMessage = document.getElementById("responseMessage");
-    const submitBtn = document.getElementById("submitBtn");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
 
-    if (!contactForm) {
-        console.error("Contact form NOT found!");
-        return;
-    }
+    const responseMessage = document.createElement("div");
+    contactForm.appendChild(responseMessage);
 
-    console.log("Contact form found!");
+    contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent page refresh
-
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const message = document.getElementById("message").value.trim();
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
 
         if (!name || !email || !message) {
-            responseMessage.textContent = "Please fill out all fields.";
-            responseMessage.style.color = "red";
+            alert("Please fill in all fields.");
             return;
         }
 
-        // Show feedback and disable button
         responseMessage.textContent = "Sending...";
-        responseMessage.style.color = "#333";
-        submitBtn.disabled = true;
+        responseMessage.style.color = "blue";
 
-        // Send the form data
-        fetch("https://edulearn-6ime.onrender.com/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, message }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Server Response:", data);
+        try {
+            const res = await fetch("https://edulearn-6ime.onrender.com/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, message }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
                 responseMessage.textContent = data.message || "Message sent successfully!";
                 responseMessage.style.color = "green";
                 contactForm.reset();
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                responseMessage.textContent = "An error occurred. Please try again.";
+            } else {
+                responseMessage.textContent = data.message || "Something went wrong.";
                 responseMessage.style.color = "red";
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-            });
+            }
+        } catch (err) {
+            console.error("Fetch error:", err);
+            responseMessage.textContent = "Failed to send. Please try again later.";
+            responseMessage.style.color = "red";
+        }
     });
 });
 
