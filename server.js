@@ -49,10 +49,6 @@ console.log('Register route loaded');
 const courseRoutes = require('./backend/routes/courses');
 app.use('/courses', authMiddleware, courseRoutes);
 
-// Default Route
-app.get('/', (req, res) => {
-    res.send('Backend is Running');
-});
 app.get("/courses", async (req, res) => {
     try {
         const courses = await CourseModel.find(); // Fetch from MongoDB
