@@ -182,6 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("JavaScript is running!");
 
     const contactForm = document.getElementById("contactForm");
+    const responseMessage = document.getElementById("responseMessage");
+    const submitBtn = document.getElementById("submitBtn");
 
     if (!contactForm) {
         console.error("Contact form NOT found!");
@@ -191,19 +193,24 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Contact form found!");
 
     contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();  // Stop the page from refreshing
+        event.preventDefault(); // Prevent page refresh
 
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
         const message = document.getElementById("message").value.trim();
 
         if (!name || !email || !message) {
-            alert("Please fill out all fields.");
+            responseMessage.textContent = "Please fill out all fields.";
+            responseMessage.style.color = "red";
             return;
         }
 
-        console.log("Sending data:", { name, email, message });
+        // Show feedback and disable button
+        responseMessage.textContent = "Sending...";
+        responseMessage.style.color = "#333";
+        submitBtn.disabled = true;
 
+        // Send the form data
         fetch("https://edulearn-6ime.onrender.com/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -212,15 +219,21 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 console.log("Server Response:", data);
-                alert(data.message);
-                contactForm.reset(); // Clear the form after success
+                responseMessage.textContent = data.message || "Message sent successfully!";
+                responseMessage.style.color = "green";
+                contactForm.reset();
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("An error occurred. Please try again.");
+                responseMessage.textContent = "An error occurred. Please try again.";
+                responseMessage.style.color = "red";
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
             });
     });
 });
+
 
 // Function to check authentication status
 function checkAuthStatus() {
